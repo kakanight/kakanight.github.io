@@ -4,23 +4,25 @@
   
   
   <entry>
-    <title>test</title>
-    <link href="/2024/11/20/test/"/>
-    <url>/2024/11/20/test/</url>
+    <title>Real-time 3D reconstruction and 6-DOF tracking with an Event Camera</title>
+    <link href="/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/"/>
+    <url>/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/</url>
     
-    <content type="html"><![CDATA[<p>这是我的第一个hexo测试博客</p><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><img src="l.jpg" alt="事实上"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="摘要–"><a href="#摘要–" class="headerlink" title="摘要–"></a>摘要–</h2><p>第一个仅基于事件相机的6自由度位子估计和3D重建的方法<br>核心思想是3个交错的概率滤波器解决SLAM中的相机运动，场景对数强度梯度，场景逆深度<br>通过纯时间输入中输出实时，高带宽，6DoF摄像机轨迹，一个或多个相关联的关键帧的场景深度图</p><h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="Event-Based-Cameras"><a href="#Event-Based-Cameras" class="headerlink" title="Event-Based Cameras"></a>Event-Based Cameras</h3><p>通过对于每一个像素的位置、极性和微秒级别时间戳的记录的特性，克服依赖于传统的成像传感器的高延迟，低动态范围和高功耗<br>data with conventional intensity frames (DAVIS)。ATIS 以DAVIS和ATIS为基准，提出了其存在的问题：</p><ol><li>持续运动中它们可能并不有用。</li><li>损耗了纯基于时间的数据流的最佳信息效率</li></ol><p>因此提出了不依靠于标准图像帧的方案</p><h3 id="Relate-Work"><a href="#Relate-Work" class="headerlink" title="Relate Work"></a>Relate Work</h3><ul><li><p>Cook等[ 7 ]提出了一个交互网络，在估计全局旋转相机运动的同时，解释一系列事件流，以恢复场景的不同视觉估计”地图”，如强度、梯度和光流。<br>  最近，Bardow等人[ 1 ]提出了一种使用事件相机的光流和强度估计方法，该方法允许任意相机运动和动态场景。</p></li><li><p>与本文最相关的工作是Kim等人[ 12 ]提出的基于概率滤波的简化SLAM系统，该系统在跟踪全局相机旋转的同时估计空间梯度，然后将其整合以重建高质量和高动态范围的平面场景</p></li><li><p>他们的方法与我们的方法具有相似的整体概念，即多个相互作用的概率滤波器，但仅限于纯旋转相机运动和全景图重建。同时，由于其跟踪算法中使用的粒子滤波的计算复杂性，它也不是完全实时的<br>所以提出的核心思想就是：一旦相机开始平移，如果两个像素有相同的强度梯度，靠近相机的像素比远的哪一个移动的更快和传递的事件更多。<br>利用这一机制进行反解深度</p></li></ul><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul><li>DVS（Dynamic Vision Sensor）相机是一种事件驱动的视觉传感器，与传统的帧捕获相机不同，它不捕获连续的图像帧，而是记录每个像素的亮度变化事件。每当像素的亮度变化超过设定的阈值时，DVS相机会生成一个事件，记录下该像素的位置、变化的极性（变亮或变暗）以及时间戳。</li></ul>]]></content>
     
     
     <categories>
       
-      <category>myTest</category>
+      <category>SLAM论文</category>
+      
+      <category>直接法</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>demo</tag>
+      <tag>基于直接法的事件相机VO</tag>
       
     </tags>
     
