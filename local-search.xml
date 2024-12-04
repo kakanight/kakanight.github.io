@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras</title>
+    <link href="/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/"/>
+    <url>/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/</url>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>SLAM论文</category>
+      
+      <category>直接法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>基于直接法的事件相机VO</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ESVIO: Event-based Stereo Visual Inertial Odometry</title>
+    <link href="/2024/12/04/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/"/>
+    <url>/2024/12/04/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/</url>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>SLAM论文</category>
+      
+      <category>特征点法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>基于特征点法的事件相机VO</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Real-time 3D reconstruction and 6-DOF tracking with an Event Camera</title>
     <link href="/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/"/>
     <url>/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/</url>
