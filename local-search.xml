@@ -5,8 +5,35 @@
   
   <entry>
     <title>ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras</title>
-    <link href="/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/"/>
-    <url>/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/</url>
+    <link href="/2024/12/10/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/"/>
+    <url>/2024/12/10/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/</url>
+    
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>]]></content>
+    
+    
+    <categories>
+      
+      <category>SLAM论文</category>
+      
+      <category>直接法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>基于直接法的事件相机VO</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>IMU-Aided Event-based Stereo Visual Odometry</title>
+    <link href="/2024/12/06/IMU-Aided-Event-based-Stereo-Visual-Odometry/"/>
+    <url>/2024/12/06/IMU-Aided-Event-based-Stereo-Visual-Odometry/</url>
     
     <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>]]></content>
     
@@ -32,10 +59,10 @@
   
   <entry>
     <title>ESVIO: Event-based Stereo Visual Inertial Odometry</title>
-    <link href="/2024/12/04/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/"/>
-    <url>/2024/12/04/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/</url>
+    <link href="/2024/12/05/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/"/>
+    <url>/2024/12/05/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/</url>
     
-    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>]]></content>
+    <content type="html"><![CDATA[<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p> m    </p>]]></content>
     
     
     <categories>
@@ -50,6 +77,33 @@
     <tags>
       
       <tag>基于特征点法的事件相机VO</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Event-Based Stereo Visual Odometry</title>
+    <link href="/2024/12/05/Event-Based-Stereo-Visual-Odometry/"/>
+    <url>/2024/12/05/Event-Based-Stereo-Visual-Odometry/</url>
+    
+    <content type="html"><![CDATA[<h2 id="摘要–"><a href="#摘要–" class="headerlink" title="摘要–"></a>摘要–</h2><p>一种基于事件相机的视觉里程计的方法，利用了事件相机的相许能够独立工作，异步相应亮度变化。<br>提出的框架结构为：同步处理的“tracking-mapping”框架<br>具体来说，映射模块通过概率融合多视角的深度估计来构建场景的半稠密三维地图；跟踪模块则通过解决一个配准问题恢复立体相机的姿态   </p><h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul><li>通过异步和差分的工作原理一直的时间冗余，降低功耗和带宽。<br>讲述现状：为了处理在光照条件不足等环境问题，一些研究将事件相机与深度传感器或标准相机等附加相机相结合，但是受制于附加传感器的较低的速度和动态范围，带来了bootlenecks（瓶颈）。</li><li>在本文中实际了一个实时处理的事件流系统，并且输出轨迹和地图。主要模块以交织的方式运行分别估算自我运动和3D重建。</li><li>总结贡献</li></ul><ol><li>一种基于目标函数优化额新型映射方法，衡量立体事件流的时空一致性。</li><li>基于估计逆深度的概率特征融合策略以恢复三维结构的稠密性和准确性</li><li>提出了一种新的基于3-D-2-D配准的摄像机跟踪方法，该方法利用了紧凑有效的事件表示固有的距离场特性</li><li>在公开数据集上实验证明</li></ol><p><img src="kuangjia.jpg" alt="系统框架"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>SLAM论文</category>
+      
+      <category>直接法</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>基于直接法的事件相机VO</tag>
       
     </tags>
     

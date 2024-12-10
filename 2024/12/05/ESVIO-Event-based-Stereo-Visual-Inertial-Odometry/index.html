@@ -19,24 +19,22 @@
   <meta name="author" content="KaKa">
   <meta name="keywords" content="">
   
-    <meta name="description" content="摘要–第一个仅基于事件相机的6自由度位子估计和3D重建的方法核心思想是3个交错的概率滤波器解决SLAM中的相机运动，场景对数强度梯度，场景逆深度通过纯时间输入中输出实时，高带宽，6DoF摄像机轨迹，一个或多个相关联的关键帧的场景深度图 内容Event-Based Cameras通过对于每一个像素的位置、极性和微秒级别时间戳的记录的特性，克服依赖于传统的成像传感器的高延迟，低动态范围和高功耗data">
+    <meta name="description" content="摘要 m">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Real-time 3D reconstruction and 6-DOF tracking with an Event Camera">
-<meta property="og:url" content="http://kakanight.github.io/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/index.html">
+<meta property="og:title" content="ESVIO: Event-based Stereo Visual Inertial Odometry">
+<meta property="og:url" content="http://kakanight.github.io/2024/12/05/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/index.html">
 <meta property="og:site_name" content="KaKa的奇妙冒险">
-<meta property="og:description" content="摘要–第一个仅基于事件相机的6自由度位子估计和3D重建的方法核心思想是3个交错的概率滤波器解决SLAM中的相机运动，场景对数强度梯度，场景逆深度通过纯时间输入中输出实时，高带宽，6DoF摄像机轨迹，一个或多个相关联的关键帧的场景深度图 内容Event-Based Cameras通过对于每一个像素的位置、极性和微秒级别时间戳的记录的特性，克服依赖于传统的成像传感器的高延迟，低动态范围和高功耗data">
+<meta property="og:description" content="摘要 m">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://kakanight.github.io/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/image.png">
-<meta property="article:published_time" content="2024-11-21T02:21:59.000Z">
-<meta property="article:modified_time" content="2024-12-04T11:29:14.982Z">
+<meta property="article:published_time" content="2024-12-05T13:27:53.000Z">
+<meta property="article:modified_time" content="2024-12-05T09:40:39.380Z">
 <meta property="article:author" content="KaKa">
-<meta property="article:tag" content="基于直接法的事件相机VO">
+<meta property="article:tag" content="基于特征点法的事件相机VO">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://kakanight.github.io/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/image.png">
   
   
   
-  <title>Real-time 3D reconstruction and 6-DOF tracking with an Event Camera - KaKa的奇妙冒险</title>
+  <title>ESVIO: Event-based Stereo Visual Inertial Odometry - KaKa的奇妙冒险</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Real-time 3D reconstruction and 6-DOF tracking with an Event Camera"></span>
+            <span id="subtitle" data-typed-text="ESVIO: Event-based Stereo Visual Inertial Odometry"></span>
           
         </div>
 
@@ -226,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-11-21 10:21" pubdate>
-          2024年11月21日 上午
+        <time datetime="2024-12-05 21:27" pubdate>
+          2024年12月5日 晚上
         </time>
       </span>
     
@@ -238,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          3 字
         
       </span>
     
@@ -249,7 +247,7 @@
         
         
         
-          14 分钟
+          1 分钟
         
       </span>
     
@@ -295,50 +293,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Real-time 3D reconstruction and 6-DOF tracking with an Event Camera</h1>
+            <h1 id="seo-header">ESVIO: Event-based Stereo Visual Inertial Odometry</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要–"><a href="#摘要–" class="headerlink" title="摘要–"></a>摘要–</h2><p>第一个仅基于事件相机的6自由度位子估计和3D重建的方法<br>核心思想是3个交错的概率滤波器解决SLAM中的相机运动，场景对数强度梯度，场景逆深度<br>通过纯时间输入中输出实时，高带宽，6DoF摄像机轨迹，一个或多个相关联的关键帧的场景深度图</p>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h3 id="Event-Based-Cameras"><a href="#Event-Based-Cameras" class="headerlink" title="Event-Based Cameras"></a>Event-Based Cameras</h3><p>通过对于每一个像素的位置、极性和微秒级别时间戳的记录的特性，克服依赖于传统的成像传感器的高延迟，低动态范围和高功耗<br>data with conventional intensity frames (DAVIS)。ATIS 以DAVIS和ATIS为基准，提出了其存在的问题：</p>
-<ol>
-<li>持续运动中它们可能并不有用。</li>
-<li>损耗了纯基于时间的数据流的最佳信息效率</li>
-</ol>
-<p>因此提出了不依靠于标准图像帧的方案</p>
-<h3 id="Relate-Work"><a href="#Relate-Work" class="headerlink" title="Relate Work"></a>Relate Work</h3><ul>
-<li><p>Cook等[ 7 ]提出了一个交互网络，在估计全局旋转相机运动的同时，解释一系列事件流，以恢复场景的不同视觉估计”地图”，如强度、梯度和光流。<br>  最近，Bardow等人[ 1 ]提出了一种使用事件相机的光流和强度估计方法，该方法允许任意相机运动和动态场景。</p>
-</li>
-<li><p>与本文最相关的工作是Kim等人[ 12 ]提出的基于概率滤波的简化SLAM系统，该系统在跟踪全局相机旋转的同时估计空间梯度，然后将其整合以重建高质量和高动态范围的平面场景</p>
-</li>
-<li><p>他们的方法与我们的方法具有相似的整体概念，即多个相互作用的概率滤波器，但仅限于纯旋转相机运动和全景图重建。同时，由于其跟踪算法中使用的粒子滤波的计算复杂性，它也不是完全实时的<br>所以提出的核心思想就是：一旦相机开始平移，如果两个像素有相同的强度梯度，靠近相机的像素比远的哪一个移动的更快和传递的事件更多。<br>利用这一机制进行反解深度</p>
-</li>
-</ul>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
-<li>3个交织的概率滤波器，第一个负责追踪全局的6dof相机运动，第二种估计关键帧图像中的对数强度梯度，这种表示也被并行地升级为全图像的强度图，第三个负责反解关键帧的深度。</li>
-<li>将建图分为两个部分：梯度和逆深度</li>
-</ul>
-<h3 id="预先工作"><a href="#预先工作" class="headerlink" title="预先工作"></a>预先工作</h3><p>定义事件: u,v 是像素的位置<br>$$ e(u, v) &#x3D; (u, v, p, t)^T $$ </p>
-<h3 id="事件相机6自由度追踪"><a href="#事件相机6自由度追踪" class="headerlink" title="事件相机6自由度追踪"></a>事件相机6自由度追踪</h3><ol>
-<li>基于事件的摄像机6 - Dof跟踪<br><br>利用李群和李代数之间的指数和对数映射，其基本思想是找到(假设当前的测井强度和反演深度估计是正确的)这个相机位姿，它最能预测一个与刚刚接收到的事件一致的对数强度变化<br><br><strong>事件预测</strong><br>使用6 - DoF (平移和旋转)连续位置运动模型进行运动预测；预测的方差与时间间隔成正比<br><strong>事件更新</strong><br>使用射线三角相交检测进行求解焦点之间的对数强度差，重建一个具有逆深度的类图像对数强度关键帧。</li>
-</ol>
-<h3 id="梯度估计和对数强度重建"><a href="#梯度估计和对数强度重建" class="headerlink" title="梯度估计和对数强度重建"></a>梯度估计和对数强度重建</h3><p>对于关键帧使用更高分辨率传感器相对于地分辨率场景。合理地对噪声进行建模以得到更好的梯度估计，同时使用并行式重建方法来提高速度。<br></p>
-<p><strong>基于像素级Ekf的梯度估计</strong><br><br>定义了一个新的概念zg,hg<br>$$z_g &#x3D; \pm \frac{C}{r_c} 其中z_g是事件率$$<br>hg (测量模型) 通过图像梯度和运动向量的点积来估算图像中运动引起的亮度变化。m是位移矢量表示变化快慢<br></p>
-<p><strong>对数强度重建</strong><br><br>结合了梯度估计（使用扩展卡尔曼滤波器EKF）和重建过程中的平滑性约束。整体方法通过一个凸优化框架，将数据项（估计梯度与重建梯度之间的差异）和正则化项（对梯度的平滑惩罚）结合在一起，并通过Legendre Fenchel 变换将优化问题转化为对偶形式，便于求解。这个方法还特别强调了对GPU并行计算的使用，以提高计算效率。同时，它使用了Huber 范数，使得优化过程对异常值更加鲁棒。<br>$$<br>|x|_h &#x3D;<br>\begin{cases}<br>\frac{1}{2} x^2 &amp; \text{如果 } |x| \leq \delta \<br>\delta(|x| - \frac{1}{2}) \delta &amp; \text{如果 } |x| &gt; \delta<br>\end{cases}<br>$$</p>
-<h3 id="反深度估计和正则化"><a href="#反深度估计和正则化" class="headerlink" title="反深度估计和正则化"></a>反深度估计和正则化</h3><p><strong>基于像素级EKF逆深度估计</strong><br><br>z表示事件的极性，h用来描述在不同时刻同一像素点的强度的差。<br><img src="image.png" srcset="/img/loading.gif" lazyload alt="alt text"><br><strong>逆深度正则化</strong><br><br>在关键帧的像素上使用逆深度正则化很有较高的置信度在较大的变化上对逆深度估计</p>
-<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul>
-<li><p>DVS（Dynamic Vision Sensor）相机是一种事件驱动的视觉传感器，与传统的帧捕获相机不同，它不捕获连续的图像帧，而是记录每个像素的亮度变化事件。每当像素的亮度变化超过设定的阈值时，DVS相机会生成一个事件，记录下该像素的位置、变化 的极性（变亮或变暗）以及时间戳。</p>
-</li>
-<li><p>射线三角形相交检测<br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/graphics/archive/2010/08/09/1795348.html">ray triangle intersection test</a></p>
-</li>
-<li><p>关于so3和SO3，se3和SE3之间的指数映射和对数映射的关系，是十分有趣的。想到指数映射，对其计算就是exp的泰勒展开。同时有(反对称矩阵)<br>已知<br>$$ \psi({三维向量}) &#x3D; \theta{a}  其中\theta是模长，a是基方向向量$$</p>
-</li>
-</ul>
-<p>通过<br>$$ a^{\Lambda}a^{\Lambda} &#x3D; aa^{T} - I$$<br>$$ a^{\Lambda}a^{\Lambda}a^{\Lambda} &#x3D; -a^{\Lambda}$$<br>对于<br>$$ e^{so3} &#x3D; SO3$$<br>展开后有<br>$$ exp(\psi^{\Lambda}) &#x3D; exp(\theta a^{\Lambda}) &#x3D; \sum_{n&#x3D;0}^{\infty} \frac{(\theta a^{\Lambda})^n}{n!} &#x3D;cos\theta I + (1-cos\theta)aa^T +sin\theta a^T $$<br>与罗德里格斯公式雷同</p>
-<ul>
-<li>勒让德-芬加变换<br>原函数的负截距函数的斜率作为输入的函数<br>$$<br>f^*(p) &#x3D; \sup_{x} \left( px - f(x) \right)<br>$$</li>
-</ul>
+                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p> m    </p>
 
                 
               </div>
@@ -362,7 +322,7 @@
   
     <span>></span>
     
-  <a href="../../../../categories/SLAM%E8%AE%BA%E6%96%87/%E7%9B%B4%E6%8E%A5%E6%B3%95/" class="category-chain-item">直接法</a>
+  <a href="../../../../categories/SLAM%E8%AE%BA%E6%96%87/%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95/" class="category-chain-item">特征点法</a>
   
   
 
@@ -379,7 +339,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="../../../../tags/%E5%9F%BA%E4%BA%8E%E7%9B%B4%E6%8E%A5%E6%B3%95%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%B8%E6%9C%BAVO/" class="print-no-link">#基于直接法的事件相机VO</a>
+        <a href="../../../../tags/%E5%9F%BA%E4%BA%8E%E7%89%B9%E5%BE%81%E7%82%B9%E6%B3%95%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%B8%E6%9C%BAVO/" class="print-no-link">#基于特征点法的事件相机VO</a>
       
     </div>
   
@@ -391,8 +351,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Real-time 3D reconstruction and 6-DOF tracking with an Event Camera</div>
-      <div>http://kakanight.github.io/2024/11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/</div>
+      <div>ESVIO: Event-based Stereo Visual Inertial Odometry</div>
+      <div>http://kakanight.github.io/2024/12/05/ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/</div>
     </div>
     <div class="license-meta">
       
@@ -404,7 +364,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年11月21日</div>
+          <div>2024年12月5日</div>
         </div>
       
       
@@ -436,15 +396,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="../../../12/05/Event-Based-Stereo-Visual-Odometry/" title="Event-Based Stereo Visual Odometry">
+                      <a href="../../06/IMU-Aided-Event-based-Stereo-Visual-Odometry/" title="IMU-Aided Event-based Stereo Visual Odometry">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Event-Based Stereo Visual Odometry</span>
+                        <span class="hidden-mobile">IMU-Aided Event-based Stereo Visual Odometry</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="../Event-Based-Stereo-Visual-Odometry/" title="Event-Based Stereo Visual Odometry">
+                        <span class="hidden-mobile">Event-Based Stereo Visual Odometry</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

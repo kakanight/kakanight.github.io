@@ -19,22 +19,24 @@
   <meta name="author" content="KaKa">
   <meta name="keywords" content="">
   
-    <meta name="description" content="摘要">
+    <meta name="description" content="摘要–一种基于事件相机的视觉里程计的方法，利用了事件相机的相许能够独立工作，异步相应亮度变化。提出的框架结构为：同步处理的“tracking-mapping”框架具体来说，映射模块通过概率融合多视角的深度估计来构建场景的半稠密三维地图；跟踪模块则通过解决一个配准问题恢复立体相机的姿态    内容 通过异步和差分的工作原理一直的时间冗余，降低功耗和带宽。讲述现状：为了处理在光照条件不足等环境问题，一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras">
-<meta property="og:url" content="http://kakanight.github.io/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/index.html">
+<meta property="og:title" content="Event-Based Stereo Visual Odometry">
+<meta property="og:url" content="http://kakanight.github.io/2024/12/05/Event-Based-Stereo-Visual-Odometry/index.html">
 <meta property="og:site_name" content="KaKa的奇妙冒险">
-<meta property="og:description" content="摘要">
+<meta property="og:description" content="摘要–一种基于事件相机的视觉里程计的方法，利用了事件相机的相许能够独立工作，异步相应亮度变化。提出的框架结构为：同步处理的“tracking-mapping”框架具体来说，映射模块通过概率融合多视角的深度估计来构建场景的半稠密三维地图；跟踪模块则通过解决一个配准问题恢复立体相机的姿态    内容 通过异步和差分的工作原理一直的时间冗余，降低功耗和带宽。讲述现状：为了处理在光照条件不足等环境问题，一">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-04T13:32:37.000Z">
-<meta property="article:modified_time" content="2024-12-04T13:33:21.365Z">
+<meta property="og:image" content="http://kakanight.github.io/2024/12/05/Event-Based-Stereo-Visual-Odometry/kuangjia.jpg">
+<meta property="article:published_time" content="2024-12-05T08:19:38.000Z">
+<meta property="article:modified_time" content="2024-12-10T09:16:53.727Z">
 <meta property="article:author" content="KaKa">
 <meta property="article:tag" content="基于直接法的事件相机VO">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://kakanight.github.io/2024/12/05/Event-Based-Stereo-Visual-Odometry/kuangjia.jpg">
   
   
   
-  <title>ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras - KaKa的奇妙冒险</title>
+  <title>Event-Based Stereo Visual Odometry - KaKa的奇妙冒险</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -213,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras"></span>
+            <span id="subtitle" data-typed-text="Event-Based Stereo Visual Odometry"></span>
           
         </div>
 
@@ -224,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-04 21:32" pubdate>
-          2024年12月4日 晚上
+        <time datetime="2024-12-05 16:19" pubdate>
+          2024年12月5日 下午
         </time>
       </span>
     
@@ -236,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2 字
+          396 字
         
       </span>
     
@@ -247,7 +249,7 @@
         
         
         
-          1 分钟
+          4 分钟
         
       </span>
     
@@ -293,12 +295,25 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras</h1>
+            <h1 id="seo-header">Event-Based Stereo Visual Odometry</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2>
+                <h2 id="摘要–"><a href="#摘要–" class="headerlink" title="摘要–"></a>摘要–</h2><p>一种基于事件相机的视觉里程计的方法，利用了事件相机的相许能够独立工作，异步相应亮度变化。<br>提出的框架结构为：同步处理的“tracking-mapping”框架<br>具体来说，映射模块通过概率融合多视角的深度估计来构建场景的半稠密三维地图；跟踪模块则通过解决一个配准问题恢复立体相机的姿态   </p>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>通过异步和差分的工作原理一直的时间冗余，降低功耗和带宽。<br>讲述现状：为了处理在光照条件不足等环境问题，一些研究将事件相机与深度传感器或标准相机等附加相机相结合，但是受制于附加传感器的较低的速度和动态范围，带来了bootlenecks（瓶颈）。</li>
+<li>在本文中实际了一个实时处理的事件流系统，并且输出轨迹和地图。主要模块以交织的方式运行分别估算自我运动和3D重建。</li>
+<li>总结贡献</li>
+</ul>
+<ol>
+<li>一种基于目标函数优化额新型映射方法，衡量立体事件流的时空一致性。</li>
+<li>基于估计逆深度的概率特征融合策略以恢复三维结构的稠密性和准确性</li>
+<li>提出了一种新的基于3-D-2-D配准的摄像机跟踪方法，该方法利用了紧凑有效的事件表示固有的距离场特性</li>
+<li>在公开数据集上实验证明</li>
+</ol>
+<p><img src="kuangjia.jpg" srcset="/img/loading.gif" lazyload alt="系统框架"></p>
+
                 
               </div>
             
@@ -350,8 +365,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ESVO2: Direct Visual-Inertial Odometry  with Stereo Event Cameras</div>
-      <div>http://kakanight.github.io/2024/12/04/ESVO2-Direct-Visual-Inertial-Odometry-with-Stereo-Event-Cameras/</div>
+      <div>Event-Based Stereo Visual Odometry</div>
+      <div>http://kakanight.github.io/2024/12/05/Event-Based-Stereo-Visual-Odometry/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +378,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月4日</div>
+          <div>2024年12月5日</div>
         </div>
       
       
@@ -395,12 +410,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="../ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/" title="ESVIO: Event-based Stereo Visual Inertial Odometry">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ESVIO: Event-based Stereo Visual Inertial Odometry</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="../ESVIO-Event-based-Stereo-Visual-Inertial-Odometry/" title="ESVIO: Event-based Stereo Visual Inertial Odometry">
-                        <span class="hidden-mobile">ESVIO: Event-based Stereo Visual Inertial Odometry</span>
+                      <a href="../../../11/21/Real-time-3D-reconstruction-and-6-DOF-tracking-with-an-Event-Camera/" title="Real-time 3D reconstruction and 6-DOF tracking with an Event Camera">
+                        <span class="hidden-mobile">Real-time 3D reconstruction and 6-DOF tracking with an Event Camera</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
